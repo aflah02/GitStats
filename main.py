@@ -3,6 +3,9 @@ import requests
 from pprint import pprint
 import base64
 from github import Github
+import pandas as pd
+import numpy as np
+import matplotlib as plt
 
 def get_user_data(user_id):
     profile_url = f'https://api.github.com/users/{user_id}'
@@ -16,6 +19,9 @@ def get_repo_info(user_id):
     for repo in user.get_repos():
         ls.append(str(repo).split('=')[1].split(')')[0].replace('"', ''))
     return ls
+
+# def get_repo_stats(repo_url):
+
 
 user_id = input('Enter Github Username')
 pprint(get_repo_info(user_id))
