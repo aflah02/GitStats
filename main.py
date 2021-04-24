@@ -33,4 +33,4 @@ def get_repo_langs(user_id):
 
 # print(requests.get('https://api.github.com/repos/aflah02/Digital-Clock/languages'))
 user_id = input('Enter Github Username: ')
-pprint(get_user_data(user_id))
+pprint(get_repo_langs(user_id))
