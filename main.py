@@ -15,13 +15,22 @@ def get_user_data(user_id):
 def get_repo_info(user_id):
     g = Github()
     user = g.get_user(user_id)
-    ls = []
+    ls_repos = []
     for repo in user.get_repos():
-        ls.append(str(repo).split('=')[1].split(')')[0].replace('"', ''))
-    return ls
+        ls_repos.append(str(repo).split('=')[1].split(')')[0].replace('"', ''))
+    return ls_repos
 
-# def get_repo_stats(repo_url):
+def get_repo_langs(user_id):
+    ls_repos = get_repo_info(user_id)
+    base_url = f'https://api.github.com/repos/{user_id}/'
+    ls_repo_data = []
+    for repo in ls_repos:
+        print(requests.get(base_url+repo+'/languages'))
+        ls_repo_data.append(requests.get(base_url+repo+'/languages'))
+    return ls_repo_data
 
 
-user_id = input('Enter Github Username')
-pprint(get_repo_info(user_id))
+
+# print(requests.get('https://api.github.com/repos/aflah02/Digital-Clock/languages'))
+user_id = input('Enter Github Username: ')
+pprint(get_user_data(user_id))
